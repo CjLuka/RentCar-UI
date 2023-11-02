@@ -1,0 +1,25 @@
+<div class="container">
+  <h1 class="mt-3">Car Models</h1>
+
+  <div class="d-flex justify-content-end mt-3">
+    <a [routerLink]="['/admin/carModels/add']" class="btn btn-primary">Add Car Model</a>
+  </div>
+
+  <ng-container *ngIf="carModels">
+
+    <table class="table table-bordered mt-3">
+      <thead>
+        <tr>
+          <th>Brand Name</th>
+          <th>Model Name</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let carModel of carModels">
+          <td>{{carModel.brandName}}</td>
+          <td>{{carModel.modelName}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </ng-container>
+</div>
