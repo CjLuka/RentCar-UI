@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { CarModel } from '../models/car-model';
+import { AllCarModels } from '../models/allCarModels';
 
 @Injectable({
   providedIn: 'root'
@@ -20,5 +21,8 @@ export class CarModelService {
   getAllCarModels(): Observable<CarModel[]>
   {
     return this.http.get<CarModel[]>(`${environment.apiBaseUrl}/api/CarModel/AllCarModels`);
+  }
+  getAllCarModelsForNewCar(): Observable<AllCarModels[]>{
+    return this.http.get<AllCarModels[]>(`${environment.apiBaseUrl}/api/CarModel/AllCarModels`);
   }
 }

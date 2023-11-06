@@ -1,13 +1,9 @@
 <div class="container">
   <h1 class="mt-3">Dostępne samochody</h1>
 
-  <div class="d-flex justify-content-end mt-3">
-    <a [routerLink]="['/admin/cars/add']" class="btn btn-primary">Add Car</a>
-  </div>
-
   
   
-  <ng-container *ngIf="allCars$ | async as cars">
+  <ng-container *ngIf="avaliableCars$ | async as avaliableCars">
     <table class="table table-bordered mt-3">
       <thead>
         <tr>
@@ -17,7 +13,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let car of cars">
+        <tr *ngFor="let car of avaliableCars">
           <td>{{car.year}}</td>
           <td>{{car.carModel.brandName}}</td>
           <td>{{car.carModel.modelName}}</td>

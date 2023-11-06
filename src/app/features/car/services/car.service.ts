@@ -25,10 +25,10 @@ export class CarService {
   {
     return this.http.get<Car[]>(`${environment.apiBaseUrl}/api/Car/AllCars`);
   }
-  getAllAvailableCars(dateStart: Date, dateEnd: Date): Observable<Car[]> {
+  getAllAvailableCars(startDate2: Date, endDate2: Date): Observable<Car[]> {
     const params = new HttpParams()
-      .set('startDate', dateStart.toString())
-      .set('endDate', dateEnd.toString());
+    .set('startDate2', startDate2.toISOString()) // Kodowanie daty jako ISO8601
+    .set('endDate2', endDate2.toISOString());
     return this.http.get<Car[]>(`${environment.apiBaseUrl}/api/Car/AvailableCars`, { params });
   }
   
