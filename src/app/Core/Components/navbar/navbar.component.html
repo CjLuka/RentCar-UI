@@ -1,32 +1,57 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container">
-    <a class="navbar-brand" href="#">Rent Car</a>
+    <a class="navbar-brand"[routerLink]="['/startPage/start-page']">Rent Car</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
+          <a class="nav-link active" aria-current="page" [routerLink]="['/startPage/start-page']">Strona główna</a>
         </li>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+        <ng-container *ngIf="user !== undefined && user?.roles?.includes('Admin')">
+
         
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Admin
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" [routerLink]="['/admin/cars']">Cars</a></li>
-            <li><a class="dropdown-item" [routerLink]="['/admin/carModels']">Car Models</a></li>
-            <!--<li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>-->
-          </ul>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" [routerLink]="['/cars/avaliableCars']">Dostępne samochody</a>
-        </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Admin
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" [routerLink]="['/admin/cars']">Cars</a></li>
+              <li><a class="dropdown-item" [routerLink]="['/admin/carModels']">Car Models</a></li>
+              <!--<li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>-->
+            </ul>
+          </li>
+        </ng-container>
+        <ng-container *ngIf="user=== undefined">
+          <li class="nav-item">
+            <a class="nav-link active" [routerLink]="['/cars/avaliableCars']">Dostępne samochody</a>
+          </li>
+        </ng-container>
+        
+        <ng-container *ngIf="user !== undefined">
+          <a class="nav-link active" [routerLink]="['/rent/rentCar']">Wypożycz samochód</a>
+          <a class="nav-link active" [routerLink]="['/rent/myRents']">Moje wypożyczenia</a>
+        </ng-container>
         
       </ul>
       
+      <div class="d-flext">
+        <ng-container *ngIf="user === undefined; else showLogout">
+          <a [routerLink]="['/login']" class="btn btn-primary">Zaloguj się</a>
+          <a [routerLink]="['/register']" class="btn btn-primary ml-3">Zarejestruj się</a>
+        </ng-container>
+        <ng-template #showLogout>
+          <div class="d-flex align-items-center">
+            <span>{{user?.email}}</span>
+            <button class="btn btn-primary ms-3" (click)="onLogout()">Wyloguj się</button>
+          </div>
+        </ng-template>
+      </div>
+
     </div>
   </div>
 </nav>

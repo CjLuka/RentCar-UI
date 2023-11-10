@@ -2,6 +2,7 @@ import { Component, OnDestroy } from '@angular/core';
 import { AddCarModelRequest } from '../models/add-car-model-request.model';
 import { CarModelService } from '../services/car-model.service';
 import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-car-model',
@@ -13,7 +14,7 @@ export class AddCarModelComponent implements OnDestroy {
   model: AddCarModelRequest;
   private addCarModelSubscription?: Subscription
 
-  constructor(private carModelService: CarModelService){
+  constructor(private carModelService: CarModelService, private router: Router){
     this.model = {
       brandName: '',
       modelName: ''
@@ -25,7 +26,7 @@ export class AddCarModelComponent implements OnDestroy {
     this.addCarModelSubscription = this.carModelService.addCarModel(this.model)
     .subscribe({
       next: (Response) => {
-        console.log('This was successful!');
+        this.router.navigateByUrl('/admin/carModels')
       }
     })
   }

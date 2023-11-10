@@ -1,0 +1,39 @@
+
+<ng-container *ngIf="user !== undefined">
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Wypożyczalnia Samochodów</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  </head>
+  <body>
+
+  <div class="container mt-5">
+    <div class="jumbotron">
+      <h1 class="display-4">Witaj w naszej wypożyczalni samochodów!</h1>
+      <p class="lead">Znajdź idealny samochód do swoich potrzeb.</p>
+      <hr class="my-4">
+      <p>Szeroki wybór pojazdów na każdą okazję.</p>
+      <a class="btn btn-primary btn-lg" [routerLink]="['/cars/avaliableCars']" role="button">Sprawdź dostępne samochody</a>
+    </div>
+  </div>
+
+
+  </body>
+  </html>
+</ng-container>
+
+<ng-container *ngIf="user === undefined">
+ 
+  <div class="container mt-5">
+    <div class="jumbotron">
+      <h1 class="display-4">Witaj w naszej wypożyczalni samochodów!</h1>
+      <p class="lead">Znajdź idealny samochód do swoich potrzeb.</p>
+      <hr class="my-4">
+      <p>Aby wypożyczyć samochód musisz się zalogować</p>
+      <a class="btn btn-primary btn-lg" [routerLink]="['/login']" role="button">Zaloguj się!</a>
+    </div>
+  </div>
+</ng-container>

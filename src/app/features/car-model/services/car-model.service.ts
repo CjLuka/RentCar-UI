@@ -15,12 +15,12 @@ export class CarModelService {
 
   addCarModel(model: AddCarModelRequest): Observable<void>
   {
-    return this.http.post<void>(`${environment.apiBaseUrl}/api/CarModel/AddCarModel`, model);
+    return this.http.post<void>(`${environment.apiBaseUrl}/api/CarModel/AddCarModel?addAuth=true`, model);
   }
 
   getAllCarModels(): Observable<CarModel[]>
   {
-    return this.http.get<CarModel[]>(`${environment.apiBaseUrl}/api/CarModel/AllCarModels`);
+    return this.http.get<CarModel[]>(`${environment.apiBaseUrl}/api/CarModel/AllCarModels?addAuth=true`);
   }
   getAllCarModelsForNewCar(): Observable<AllCarModels[]>{
     return this.http.get<AllCarModels[]>(`${environment.apiBaseUrl}/api/CarModel/AllCarModels`);
